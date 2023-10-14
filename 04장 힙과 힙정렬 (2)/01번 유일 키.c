@@ -41,18 +41,18 @@ void inPlaceHeapSort() {
 }
 
 void downHeap(int i) {
-	int larger = i * 2; //왼쪽 자식 노드
-
-	if (larger > n)
+	if (i * 2 > n)
 		return;
 
-	else if (larger + 1 <= n && H[larger + 1] > H[larger])
-		larger = larger + 1;
+	int larger = i * 2;
 
-	if (H[larger] > H[i]) {
-		swap(H + i, H + larger);
+	if (i * 2 + 1 <= n && H[i * 2 + 1] > H[i * 2]) {
+		larger = i * 2 + 1;
+	}
 
-		downHeap(larger);
+	if (H[i] < H[larger]) { //원하는 자리에 도착했을 때(최대 힙으로 됐을 때)
+		swap(H + i, H + larger); //둘 중 큰 자식 노드와 부모 노드끼리 변경
+		downHeap(larger); //재귀적 호출
 	}
 }
 

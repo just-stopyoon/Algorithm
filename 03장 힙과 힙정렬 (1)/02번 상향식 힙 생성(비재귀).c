@@ -31,19 +31,19 @@ void buildHeap() {
 }
 
 void downHeap(int i) {
-	if (i * 2 > n && i * 2 + 1 > n) //외부노드일 때
+	if (i * 2 > n) //외부노드일 때
 		return;
 
 	int larger = i * 2; //왼쪽 자식 노드 값 저장
 
-	if (H[i * 2 + 1] > H[larger]) //오른쪽 자식 노드가 더 크다면
+	if (i * 2 + 1 <= n && H[i * 2 + 1] > H[larger]) //오른쪽 자식 노드가 더 크다면
 		larger = i * 2 + 1; //오른쪽 자식 노드 값 저장
 
-	if (H[i] >= H[larger]) //원하는 자리에 도착했을 때(최대 힙으로 됐을 때)
-		return;
+	if (H[i] < H[larger]) { //원하는 자리에 도착했을 때(최대 힙으로 됐을 때)
+		swap(H + i, H + larger); //둘 중 큰 자식 노드와 부모 노드끼리 변경
+		downHeap(larger); //재귀적 호출
+	}
 
-	swap(H + i, H + larger); //둘 중 큰 자식 노드와 부모 노드끼리 변경
-	downHeap(larger); //재귀적 호출
 }
 
 void printHeap() {
