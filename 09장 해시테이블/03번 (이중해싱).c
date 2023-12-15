@@ -64,7 +64,7 @@ void print(int* H) {
 int main() {
 	scanf("%d %d %d", &M, &n, &q);
 
-	int* H = (int*)malloc(sizeof(int) * M); //크기가 M인 배열로 동적할당
+	int* H = (int*)calloc(M, sizeof(int)); //크기가 M인 배열로 동적할당
 
 	char c;
 	int x;
